@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Creador de Sendas — Sistema P.A.P.A.</title>
+  <style>
+    :root{--bg:#efe8d8;--paper:#fbf6ea;--paper2:#fffaf1;--ink:#26211c;--muted:#766b5d;--line:#d8cbb5;--blue:#225c73;--blueDark:#173f50;--blueSoft:#dcebf1;--green:#3f6f5b;--red:#a94a45;--gold:#b9893b;--shadow:0 16px 40px rgba(33,30,24,.16);--radius:18px}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,rgba(255,255,255,.55),transparent 32rem),linear-gradient(135deg,#f4eddc,#e7dcc7);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45}button,input,textarea,select{font:inherit}button{cursor:pointer}.app-header{background:rgba(251,246,234,.96);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;box-shadow:0 2px 14px rgba(30,25,18,.08)}.topbar{max-width:1440px;margin:0 auto;padding:16px 20px;display:flex;gap:16px;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:13px;min-width:0}.logo{width:46px;height:46px;border-radius:14px;background:var(--blue);color:white;display:grid;place-items:center;font-weight:900;letter-spacing:.06em;flex:0 0 auto}h1{margin:0;color:var(--blueDark);font-size:1.25rem;line-height:1.1}.sub{color:var(--muted);font-size:.86rem;margin-top:2px}.top-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}.btn{border:1px solid var(--line);background:var(--paper2);color:var(--ink);padding:9px 13px;border-radius:999px;font-weight:700;min-height:38px}.btn:hover{border-color:var(--blue)}.btn.primary{background:var(--blue);border-color:var(--blue);color:white}.btn.danger{color:var(--red);border-color:#d9aaa5;background:#fff5f3}.btn.small{font-size:.85rem;padding:7px 10px;min-height:32px}.layout{max-width:1440px;margin:0 auto;padding:20px;display:grid;grid-template-columns:230px minmax(0,1fr) 330px;gap:18px;align-items:start}.sidebar,.panel,.summary{background:rgba(251,246,234,.92);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.sidebar{position:sticky;top:86px;padding:10px}.step{width:100%;border:0;background:transparent;color:var(--muted);padding:11px 10px;display:flex;gap:9px;align-items:center;border-radius:13px;font-weight:800;text-align:left}.step:hover{background:var(--paper2)}.step.active{background:var(--blue);color:white}.num{width:24px;height:24px;border-radius:50%;background:rgba(34,92,115,.13);display:grid;place-items:center;font-size:.78rem;flex:0 0 auto}.step.active .num{background:rgba(255,255,255,.22)}.panel{padding:22px;min-width:0;min-height:680px}.panel-title{margin:0;color:var(--blueDark);font-size:1.65rem;line-height:1.1}.panel-desc{margin:.45rem 0 1.25rem;color:var(--muted)}.section-title{color:var(--blueDark);margin:1.4rem 0 .6rem;font-size:1.05rem}.grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.field{display:grid;gap:6px}label{font-weight:800;color:#352e26;font-size:.92rem}.hint{color:var(--muted);font-size:.82rem}input,textarea,select{width:100%;border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:12px;padding:10px 11px;outline:none}textarea{resize:vertical;min-height:80px}input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(34,92,115,.13)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.choice{border:1px solid var(--line);background:var(--paper2);border-radius:15px;padding:13px;cursor:pointer;min-height:92px}.choice:hover{border-color:var(--blue)}.choice.selected{background:var(--blueSoft);border-color:var(--blue);box-shadow:0 0 0 3px rgba(34,92,115,.08)}.choice h3{margin:0 0 5px;color:var(--blueDark);font-size:1rem}.choice p{margin:0;color:var(--muted);font-size:.86rem}.summary{position:sticky;top:86px;padding:16px}.summary h2{margin:0 0 12px;color:var(--blueDark);font-size:1.08rem}.meter{height:10px;border-radius:999px;overflow:hidden;background:#e5d8c2;margin-bottom:14px}.meter span{display:block;height:100%;background:var(--blue);width:0}.summary-block{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}.summary-row{display:flex;justify-content:space-between;gap:12px;margin:8px 0;font-size:.88rem}.summary-row span{color:var(--muted);text-align:right}.pillbox{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}.pill,.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;font-size:.78rem;font-weight:800;background:#efe5d2;color:#4d4337}.badge.blue{background:var(--blueSoft);color:var(--blueDark)}.badge.good{background:#e2f0e5;color:var(--green)}.badge.warn{background:#fff0d9;color:#87580f}.badge.bad{background:#ffe3df;color:var(--red)}.alert-list{display:grid;gap:9px}.alert{padding:11px 12px;border-radius:13px;border:1px solid var(--line);background:var(--paper2);font-size:.9rem}.alert.ok{background:#eef8f0;border-color:#b6d9c0;color:#27643f}.alert.warn{background:#fff6e6;border-color:#efcf98;color:#7d530f}.alert.bad{background:#fff0ed;border-color:#e2aaa4;color:#88342f}.skill-list{display:grid;gap:14px}.skill-card{border:1px solid var(--line);background:var(--paper2);border-radius:16px;overflow:hidden}.skill-summary{padding:14px;display:flex;justify-content:space-between;gap:12px;align-items:center;background:#fffaf1;border-bottom:1px solid var(--line)}.skill-summary strong{color:var(--blueDark)}.skill-body{padding:14px}.skill-body.collapsed{display:none}.skill-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.toolbar{border-top:1px solid var(--line);padding-top:16px;margin-top:20px;display:flex;justify-content:space-between;gap:10px}.exportbox{min-height:430px;font-family:Consolas,"Courier New",monospace;font-size:.88rem;white-space:pre-wrap}.modal-backdrop{position:fixed;inset:0;background:rgba(20,18,15,.52);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}.modal-backdrop.open{display:flex}.modal{width:min(980px,100%);max-height:90vh;overflow:hidden;background:var(--paper);border:1px solid var(--line);border-radius:22px;box-shadow:0 28px 90px rgba(0,0,0,.35);display:grid;grid-template-rows:auto auto 1fr auto}.modal-header{padding:17px 18px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:1px solid var(--line);background:#fff8eb}.modal-header h3{margin:0;color:var(--blueDark);font-size:1.2rem}.modal-header p{margin:4px 0 0;color:var(--muted);font-size:.88rem}.tabs{display:flex;gap:8px;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--paper)}.tab{border:1px solid var(--line);background:var(--paper2);color:var(--muted);border-radius:999px;padding:8px 11px;font-weight:800;font-size:.88rem}.tab.active{background:var(--blue);border-color:var(--blue);color:#fff}.modal-content{padding:14px;overflow:auto}.module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.module-card{border:1px solid var(--line);background:var(--paper2);border-radius:15px;padding:13px;display:grid;gap:8px}.module-card h4{margin:0;color:var(--blueDark);font-size:1rem}.module-card p{margin:0;color:var(--muted);font-size:.86rem}.module-footer{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:4px}.modal-footer{padding:13px 14px;border-top:1px solid var(--line);background:#fff8eb;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.selected-modules{display:grid;gap:8px;margin-top:12px}.selected-module{border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px;display:grid;gap:8px}.selected-module-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.condition-box{display:grid;grid-template-columns:1fr 120px;gap:8px}@media(max-width:1180px){.layout{grid-template-columns:210px minmax(0,1fr)}.summary{grid-column:1/-1;position:static}}@media(max-width:780px){.topbar{align-items:flex-start;flex-direction:column}.layout{display:block;padding:12px}.sidebar,.summary{position:static;margin-bottom:12px}.panel{padding:16px}.grid.two{grid-template-columns:1fr}.skill-summary{align-items:flex-start;flex-direction:column}.condition-box{grid-template-columns:1fr}.modal{max-height:94vh}}
+  </style>
+</head>
+<body>
+<header class="app-header"><div class="topbar"><div class="brand"><div class="logo">PAPA</div><div><h1>Creador de Sendas</h1><div class="sub">Sistema P.A.P.A. · prototipo estable</div></div></div><div class="top-actions"><button class="btn" id="importBtn">Importar JSON</button><button class="btn" id="saveBtn">Guardar</button><button class="btn danger" id="resetBtn">Reiniciar</button></div></div></header>
+<div class="layout"><aside class="sidebar" id="steps"></aside><main class="panel"><h2 class="panel-title" id="panelTitle"></h2><p class="panel-desc" id="panelDesc"></p><div id="content"></div><div class="toolbar"><button class="btn" id="prevBtn">Anterior</button><button class="btn primary" id="nextBtn">Siguiente</button></div></main><aside class="summary"><h2>Resumen</h2><div class="meter"><span id="progress"></span></div><div class="summary-block"><div class="summary-row"><strong>Nombre</strong><span id="sumName">—</span></div><div class="summary-row"><strong>Perfil</strong><span id="sumProfile">—</span></div><div class="summary-row"><strong>Energías</strong><span id="sumEnergies">—</span></div><div class="summary-row"><strong>PCS</strong><span id="sumPCS">—</span></div><div class="summary-row"><strong>PS</strong><span id="sumPS">—</span></div></div><div class="summary-block"><strong>Conceptos</strong><div class="pillbox" id="sumConcepts"></div></div><div class="summary-block"><strong>Alertas</strong><div class="alert-list" id="sumAlerts" style="margin-top:8px"></div></div></aside></div>
+<div class="modal-backdrop" id="moduleModal"><div class="modal" role="dialog" aria-modal="true"><div class="modal-header"><div><h3 id="modalTitle">Módulos de habilidad</h3><p>Elige módulos, añade condiciones y aplica el resultado a la habilidad.</p></div><button class="btn small" onclick="closeModal()">Cerrar</button></div><div class="tabs" id="moduleTabs"></div><div class="modal-content"><div class="module-grid" id="moduleGrid"></div><h4 class="section-title">Módulos seleccionados</h4><div class="selected-modules" id="selectedModules"></div></div><div class="modal-footer"><span class="badge blue" id="modalTotal">0 PS</span><div><button class="btn" onclick="clearModules()">Limpiar</button><button class="btn primary" onclick="applyModules()">Aplicar a habilidad</button></div></div></div></div>
+<script>
+const steps=[['identity','Identidad','Define la fantasía y la promesa central de la Senda.'],['structure','Estructura','Elige Energías, Perfil de Vitalidad y calcula PS disponibles.'],['concepts','Conceptos','Elige tres Conceptos.'],['affinities','Afines','Elige tres categorías afines y dos contrarias.'],['equipment','Equipo','Define el equipo inicial con 100 L.'],['skills','Habilidades','Crea las siete habilidades y sus módulos.'],['review','Revisión','Revisa errores, advertencias y requisitos.'],['export','Exportar','Copia o descarga la Senda.']];
+const profiles={fragil:{name:'Frágil',cost:0,res:1,rule:'Debe incluir evasión, retirada, ocultamiento o mitigación.'},ligero:{name:'Ligero',cost:2,res:3,rule:'No debe depender de aguantar daño como identidad principal.'},robusto:{name:'Robusto',cost:4,res:5,rule:'Perfil estándar.'},titan:{name:'Titán',cost:8,res:7,rule:'Máximo 2 habilidades ofensivas principales.'}};
+const energies=['Orden','Conservación','Destrucción','Caos','Sombras','Llamas','Sellos','Aliento','Naturaleza'];
+const conceptList=[['Acólito','Espiritual'],['Agricultor','Productivo'],['Alquimista','Productivo'],['Artesano','Productivo'],['Artista','Social / Espiritual'],['Asceta','Marcial / Espiritual'],['Astrónomo','Intelectual'],['Boticario','Productivo'],['Cartógrafo','Intelectual'],['Cazador','Marcial'],['Cocinero','Productivo'],['Constructor','Productivo'],['Contrabandista','Marcial / Social'],['Cortesano','Social'],['Curandero','Espiritual'],['Domador','Marcial'],['Erudito','Intelectual / Espiritual'],['Espía','Social'],['Espiritista','Espiritual'],['Explorador','Marcial'],['Exorcista','Espiritual'],['Guerrero','Marcial'],['Hechicero','Espiritual'],['Herrero','Productivo'],['Historiador','Intelectual'],['Ingeniero','Intelectual'],['Jurista','Intelectual'],['Ladrón','Social / Marcial'],['Lingüista','Intelectual'],['Maestro','Social / Intelectual'],['Marinero','Marcial'],['Mercader','Social'],['Minero','Productivo'],['Monje','Marcial / Espiritual'],['Noble','Social'],['Pescador','Productivo'],['Pícaro','Social'],['Sacerdote','Espiritual'],['Sastre','Productivo'],['Tintorero','Productivo']];
+const affinityList=['Conceptos marciales','Conceptos sociales','Conceptos productivos','Conceptos espirituales','Conceptos intelectuales','Potenciar Naturaleza (+1)','Aprender Naturaleza nueva','Aprender Concepto nuevo','Potenciar Concepto (+1)','Rango de Senda (2 habilidades)','Subir Atributo Cuerpo','Subir Atributo Destreza','Subir Atributo Aura','Nuevo Árbol de Técnicas','Técnicas de Energía declarada'];
+
+const equipmentCatalog=[
+  // Armas simples cuerpo a cuerpo
+  {cat:'Armas simples cuerpo a cuerpo',name:'Arma Improvisada',cost:0,capacity:0,detail:'Daño 1d6−3 · Variable · —'},
+  {cat:'Armas simples cuerpo a cuerpo',name:'Daga / Cuchillo',cost:4,capacity:0.5,detail:'Daño 1d6−2 · Penetrante · Ligera, Arrojadiza (5/10)'},
+  {cat:'Armas simples cuerpo a cuerpo',name:'Bastón',cost:1,capacity:1,detail:'Daño 1d6−1 · Contundente · A dos manos'},
+  {cat:'Armas simples cuerpo a cuerpo',name:'Maza Ligera',cost:20,capacity:1,detail:'Daño 1d6 · Contundente · Ligera'},
+  {cat:'Armas simples cuerpo a cuerpo',name:'Hoz',cost:5,capacity:1,detail:'Daño 1d6−1 · Cortante · Ligera'},
+  {cat:'Armas simples cuerpo a cuerpo',name:'Lanza Corta',cost:10,capacity:1,detail:'Daño 1d6 · Penetrante · Arrojadiza (10/20)'},
+
+  // Armas marciales cuerpo a cuerpo
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Espada Corta',cost:20,capacity:1,detail:'Daño 1d6 · Cortante · Ligera'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Hacha de Mano',cost:20,capacity:1,detail:'Daño 1d6 · Cortante · Ligera, Arrojadiza (5/10)'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Estoque',cost:25,capacity:1,detail:'Daño 1d6 · Penetrante · Ligera'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Cimitarra',cost:25,capacity:1,detail:'Daño 1d6 · Cortante · Ligera'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Lanza',cost:25,capacity:1,detail:'Daño 1d6+1 · Penetrante · Versátil (2d6−1), Alcance'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Espada Larga',cost:30,capacity:1,detail:'Daño 1d6+1 · Cortante · Versátil (2d6)'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Martillo de Guerra',cost:30,capacity:1,detail:'Daño 1d6+1 · Contundente · Versátil (2d6)'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Hacha de Guerra',cost:30,capacity:1,detail:'Daño 1d6+1 · Cortante · Versátil (2d6)'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Maza Pesada',cost:40,capacity:2,detail:'Daño 2d6−1 · Contundente · Pesada'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Alabarda',cost:50,capacity:2,detail:'Daño 2d6 · Cortante/Penetrante · Pesada, A dos manos, Alcance'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Mandoble / Espadón',cost:55,capacity:2,detail:'Daño 2d6 · Cortante · Pesada, A dos manos'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Gran Hacha',cost:60,capacity:2,detail:'Daño 2d6+1 · Cortante · Pesada, A dos manos'},
+  {cat:'Armas marciales cuerpo a cuerpo',name:'Martillo a Dos Manos',cost:60,capacity:2,detail:'Daño 2d6+1 · Contundente · Pesada, A dos manos'},
+
+  // Armas simples a distancia
+  {cat:'Armas simples a distancia',name:'Honda',cost:1,capacity:0.5,detail:'Daño 1d6−2 · Contundente · Rango (15/30)'},
+  {cat:'Armas simples a distancia',name:'Arco Corto',cost:50,capacity:1,detail:'Daño 1d6 · Penetrante · A dos manos, Rango (20/40)'},
+  {cat:'Armas simples a distancia',name:'Ballesta Ligera',cost:70,capacity:1,detail:'Daño 1d6+1 · Penetrante · A dos manos, Rango (25/50), Recarga (Rápida)'},
+  {cat:'Armas simples a distancia',name:'Boleadoras',cost:6,capacity:0.5,detail:'Daño 1d6−2 · Contundente · Arrojadiza (10/20), Derribo'},
+  {cat:'Armas simples a distancia',name:'Jabalina Ligera',cost:12,capacity:1,detail:'Daño 1d6 · Penetrante · Arrojadiza (15/30)'},
+
+  // Armas marciales a distancia
+  {cat:'Armas marciales a distancia',name:'Arco Largo',cost:80,capacity:2,detail:'Daño 1d6+1 · Penetrante · Pesada, A dos manos, Rango (35/70)'},
+  {cat:'Armas marciales a distancia',name:'Ballesta Pesada',cost:120,capacity:2,detail:'Daño 2d6 · Penetrante · Pesada, A dos manos, Rango (40/80), Recarga (Principal)'},
+  {cat:'Armas marciales a distancia',name:'Arco Recurvo',cost:90,capacity:1,detail:'Daño 1d6+1 · Penetrante · A dos manos, Rango (30/60)'},
+  {cat:'Armas marciales a distancia',name:'Jabalina Pesada',cost:25,capacity:1,detail:'Daño 1d6+1 · Penetrante · Arrojadiza (20/40)'},
+  {cat:'Armas marciales a distancia',name:'Chakram de Guerra',cost:30,capacity:0.5,detail:'Daño 1d6 · Cortante · Arrojadiza (15/30), Ligera, Retorno'},
+
+  // Armas de puño
+  {cat:'Armas de puño',name:'Puño Desnudo',cost:0,capacity:0,detail:'Daño 1d6−4 · Contundente · Ligera'},
+  {cat:'Armas de puño',name:'Manopla de Hierro',cost:8,capacity:0.5,detail:'Daño 1d6−2 · Contundente · Ligera, Integrada'},
+  {cat:'Armas de puño',name:'Katar (Puñal de Empuje)',cost:20,capacity:0.5,detail:'Daño 1d6−1 · Penetrante · Ligera, Integrada, Perforante'},
+  {cat:'Armas de puño',name:'Guantelete de Combate',cost:30,capacity:1,detail:'Daño 1d6 · Contundente · Integrada'},
+  {cat:'Armas de puño',name:'Tekko (Nudillera de Madera)',cost:5,capacity:0.5,detail:'Daño 1d6−2 · Contundente · Ligera'},
+  {cat:'Armas de puño',name:'Sai',cost:18,capacity:0.5,detail:'Daño 1d6−1 · Penetrante · Ligera, Paradora'},
+  {cat:'Armas de puño',name:'Guantelete con Garras',cost:35,capacity:1,detail:'Daño 1d6 · Cortante · Integrada'},
+  {cat:'Armas de puño',name:'Puño de Hierro Pesado',cost:50,capacity:1,detail:'Daño 1d6+1 · Contundente · Pesada, Integrada'},
+  {cat:'Armas de puño',name:'Katar Doble',cost:40,capacity:1,detail:'Daño 1d6 · Penetrante · Integrada, Doble Hoja'},
+
+  // Armaduras
+  {cat:'Armaduras',name:'Ropas Acolchadas',cost:10,capacity:1,detail:'Ligera · +2 Defensa · Req. Cuerpo +0 · Sigilo —'},
+  {cat:'Armaduras',name:'Armadura de Cuero',cost:20,capacity:1,detail:'Ligera · +3 Defensa · Req. Cuerpo +0 · Sigilo —'},
+  {cat:'Armaduras',name:'Gambesón Reforzado',cost:35,capacity:1,detail:'Ligera · +3 Defensa · Req. Cuerpo +0 · Sigilo −1'},
+  {cat:'Armaduras',name:'Chaleco de Cuero Endurecido',cost:80,capacity:1,detail:'Ligera · +4 Defensa · Req. Cuerpo +1 · Sigilo −1'},
+  {cat:'Armaduras',name:'Cota de Mallas',cost:150,capacity:2,detail:'Media · +4 Defensa · Límite Destreza +2 · Req. Cuerpo +2 · Sigilo −1'},
+  {cat:'Armaduras',name:'Coraza de Bronce',cost:120,capacity:2,detail:'Media · +4 Defensa · Límite Destreza +1 · Req. Cuerpo +2 · Sigilo −2'},
+  {cat:'Armaduras',name:'Armadura de Escamas',cost:200,capacity:2,detail:'Media · +5 Defensa · Límite Destreza +2 · Req. Cuerpo +2 · Sigilo −2'},
+  {cat:'Armaduras',name:'Armadura de Placas',cost:800,capacity:3,detail:'Pesada · +6 Defensa · Límite Destreza +1 · Req. Cuerpo +3 · Sigilo −3'},
+  {cat:'Armaduras',name:'Armadura Completa',cost:3000,capacity:3,detail:'Pesada · +7 Defensa · Límite Destreza +0 · Req. Cuerpo +4 · Sigilo −4'},
+
+  // Escudos
+  {cat:'Escudos',name:'Broquel',cost:10,capacity:0.5,detail:'Ligero · +1 Defensa · Req. Cuerpo +0 · Sin penalización'},
+  {cat:'Escudos',name:'Rodela Pequeña',cost:20,capacity:0.5,detail:'Ligero · +2 Defensa · Req. Cuerpo +1 · Sigilo −1'},
+  {cat:'Escudos',name:'Escudo Redondo',cost:30,capacity:1,detail:'Medio · +2 Defensa · Req. Cuerpo +2 · Sigilo −1'},
+  {cat:'Escudos',name:'Escudo Estándar',cost:60,capacity:1,detail:'Medio · +3 Defensa · Req. Cuerpo +3 · Sigilo −2'},
+  {cat:'Escudos',name:'Escudo Grande (Pavés)',cost:80,capacity:2,detail:'Pesado · +3 Defensa · Req. Cuerpo +4 · Sigilo −3'},
+  {cat:'Escudos',name:'Escudo de Torre',cost:120,capacity:2,detail:'Pesado · +4 Defensa · Req. Cuerpo +4 · Sigilo −3'},
+
+  // Equipo de aventura
+  {cat:'Equipo de aventura',name:'Aceite para lámpara (frasco)',cost:1,capacity:0,detail:'Combustible para lámpara.'},
+  {cat:'Equipo de aventura',name:'Antorcha',cost:0.02,capacity:0.5,detail:'2 c · Fuente de luz simple.'},
+  {cat:'Equipo de aventura',name:'Cuerda cáñamo (15 m)',cost:2,capacity:1,detail:'Cuerda común de viaje.'},
+  {cat:'Equipo de aventura',name:'Cuerda de seda (15 m)',cost:20,capacity:0.5,detail:'Cuerda ligera y resistente.'},
+  {cat:'Equipo de aventura',name:'Gancho de escalada',cost:4,capacity:0.5,detail:'Para ascenso, anclaje o escalada.'},
+  {cat:'Equipo de aventura',name:'Herramientas de ladrón',cost:50,capacity:0.5,detail:'Ganzúas y útiles de apertura.'},
+  {cat:'Equipo de aventura',name:'Kit de curandero',cost:100,capacity:1,detail:'Primeros auxilios, vendas y ungüentos.'},
+  {cat:'Equipo de aventura',name:'Lámpara con capucha',cost:10,capacity:1,detail:'Fuente de luz protegida.'},
+  {cat:'Equipo de aventura',name:'Martillo y clavos (x10)',cost:2,capacity:0.5,detail:'Herramientas básicas.'},
+  {cat:'Equipo de aventura',name:'Mochila',cost:4,capacity:0,detail:'Permite transportar equipo.'},
+  {cat:'Equipo de aventura',name:'Odre de agua',cost:1,capacity:0.5,detail:'Recipiente de viaje.'},
+  {cat:'Equipo de aventura',name:'Palanca',cost:4,capacity:1,detail:'Herramienta para forzar, levantar o abrir.'},
+  {cat:'Equipo de aventura',name:'Raciones (1 día)',cost:1,capacity:0.5,detail:'Comida de viaje.'},
+  {cat:'Equipo de aventura',name:'Saco de dormir',cost:2,capacity:1,detail:'Descanso en viaje.'},
+  {cat:'Equipo de aventura',name:'Tienda (2 personas)',cost:20,capacity:2,detail:'Refugio portátil.'},
+  {cat:'Equipo de aventura',name:'Yesquero',cost:1,capacity:0,detail:'Encender fuego.'},
+
+  // Kits de oficio y aventura
+  {cat:'Kits',name:'Kit de Aventurero',cost:25,capacity:2,detail:'Equipo básico de viaje, acampada y exploración general.'},
+  {cat:'Kits',name:'Kit de Explorador',cost:35,capacity:2,detail:'Orientación, rastreo, marcha por terreno difícil y supervivencia.'},
+  {cat:'Kits',name:'Kit de Escalada',cost:30,capacity:2,detail:'Ascenso, descenso, anclajes, cuerdas cortas y seguridad en altura.'},
+  {cat:'Kits',name:'Kit de Curandero',cost:100,capacity:1,detail:'Vendas, agujas, ungüentos, tablillas y herramientas de primeros auxilios.'},
+  {cat:'Kits',name:'Kit de Ladrón',cost:50,capacity:0.5,detail:'Ganzúas, sondas, limas finas, alambres y herramientas de apertura discreta.'},
+  {cat:'Kits',name:'Kit de Artesano',cost:40,capacity:2,detail:'Herramientas generales para reparación, ajuste y fabricación menor.'},
+  {cat:'Kits',name:'Kit de Herrero',cost:80,capacity:3,detail:'Martillos, pinzas, limas, tenazas y útiles de trabajo metalúrgico básico.'},
+  {cat:'Kits',name:'Kit de Carpintero',cost:45,capacity:2,detail:'Serrucho pequeño, formones, cuerda de medición, clavos y herramientas de madera.'},
+  {cat:'Kits',name:'Kit de Sastre',cost:25,capacity:0.5,detail:'Agujas, hilo, tijeras, retazos, cinta de medir y útiles de costura.'},
+  {cat:'Kits',name:'Kit de Cocinero',cost:30,capacity:1,detail:'Cuchillos, especias comunes, olla pequeña, paños y utensilios de cocina.'},
+  {cat:'Kits',name:'Kit de Pescador',cost:25,capacity:1,detail:'Sedal, anzuelos, red pequeña, cuchillo, corchos y útiles de pesca básica.'},
+  {cat:'Kits',name:'Kit de Cazador',cost:40,capacity:2,detail:'Trampas pequeñas, cuerda, cuchillo de despiece, cebo y útiles de rastreo.'},
+  {cat:'Kits',name:'Kit de Botánico',cost:35,capacity:1,detail:'Bolsas, frascos, cuchillo fino, prensa pequeña y materiales para recolectar plantas.'},
+  {cat:'Kits',name:'Kit de Alquimista',cost:120,capacity:2,detail:'Frascos, mortero, filtros, goteros y recipientes para mezclas simples.'},
+  {cat:'Kits',name:'Kit de Escriba',cost:20,capacity:0.5,detail:'Tinta, plumas, tablillas, papel o pergamino, sellos simples y estuche.'},
+  {cat:'Kits',name:'Kit de Cartógrafo',cost:60,capacity:1,detail:'Compás, regla, tinta, cuerda de medición, papeles encerados y útiles de mapa.'},
+  {cat:'Kits',name:'Kit de Marino',cost:45,capacity:1,detail:'Cuerdas, aguja de vela, grasa, silbato, brújula simple y útiles de navegación menor.'},
+  {cat:'Kits',name:'Kit de Comerciante',cost:50,capacity:1,detail:'Pesas, balanza pequeña, sellos, tablillas de cuenta y materiales de embalaje.'},
+  {cat:'Kits',name:'Kit de Sacerdote',cost:40,capacity:1,detail:'Símbolo ritual, ungüentos, incienso, cuenco, cordeles y objetos litúrgicos menores.'},
+  {cat:'Kits',name:'Kit de Espiritista',cost:70,capacity:1,detail:'Amuletos, talismanes simples, tiza, campanillas, sal, cordeles y objetos rituales.'},
+  {cat:'Kits',name:'Kit de Disfraz',cost:75,capacity:1,detail:'Cosméticos, pelucas simples, telas, postizos, tintes y útiles para alterar la apariencia.'},
+  {cat:'Kits',name:'Kit de Campamento',cost:60,capacity:3,detail:'Utensilios comunes para dormir, cocinar y montar refugio para un grupo pequeño.'},
+  {cat:'Kits',name:'Kit de Minero',cost:55,capacity:3,detail:'Pico pequeño, cuñas, martillo, lámpara, cuerda corta y herramientas de extracción.'},
+  {cat:'Kits',name:'Kit de Constructor',cost:70,capacity:3,detail:'Plomada, cordel, martillo, clavos, estacas, regla y herramientas de obra menor.'},
+
+  // Ropas
+  {cat:'Ropas',name:'Harapos',cost:0,capacity:0,detail:'Ropa rota, sucia o improvisada. Coste sugerido 0–2 L.'},
+  {cat:'Ropas',name:'Ropa Simple',cost:5,capacity:0,detail:'Prendas básicas de uso diario.'},
+  {cat:'Ropas',name:'Ropa de Trabajo',cost:10,capacity:0,detail:'Prendas resistentes para labores físicas.'},
+  {cat:'Ropas',name:'Ropa de Viaje',cost:15,capacity:0,detail:'Prendas cómodas, capa ligera, botas o calzado firme.'},
+  {cat:'Ropas',name:'Ropa de Frío',cost:25,capacity:1,detail:'Capas gruesas, pieles, guantes, gorro y botas forradas.'},
+  {cat:'Ropas',name:'Ropa de Calor',cost:15,capacity:0,detail:'Telas ligeras y protección contra sol.'},
+  {cat:'Ropas',name:'Ropa de Lluvia',cost:20,capacity:0.5,detail:'Capa impermeabilizada, capucha y protección de equipo menor.'},
+  {cat:'Ropas',name:'Ropa Urbana',cost:20,capacity:0,detail:'Vestimenta decente de ciudad.'},
+  {cat:'Ropas',name:'Ropa de Oficio',cost:25,capacity:0,detail:'Atuendo reconocible de una profesión concreta.'},
+  {cat:'Ropas',name:'Uniforme Menor',cost:30,capacity:0,detail:'Guardia local, sirviente, mensajero, gremio o funcionario menor.'},
+  {cat:'Ropas',name:'Ropa Buena',cost:50,capacity:0,detail:'Prendas de buena tela y corte cuidado.'},
+  {cat:'Ropas',name:'Ropa de Corte',cost:120,capacity:0,detail:'Vestimenta elegante para audiencias y actos formales.'},
+  {cat:'Ropas',name:'Ropa de Gala',cost:250,capacity:0,detail:'Atuendo lujoso con telas finas y adornos visibles.'},
+  {cat:'Ropas',name:'Ropa Ceremonial',cost:100,capacity:0,detail:'Vestimenta ritual, religiosa, académica o tradicional.'},
+  {cat:'Ropas',name:'Ropa Exótica',cost:80,capacity:0,detail:'Prendas de región lejana o estilo poco común.'},
+  {cat:'Ropas',name:'Ropa de Luto',cost:30,capacity:0,detail:'Prendas sobrias para duelo, funeral o recogimiento.'},
+  {cat:'Ropas',name:'Ropa Íntima y de Descanso',cost:5,capacity:0,detail:'Muda básica, ropa de dormir o prendas interiores.'},
+
+  // Accesorios
+  {cat:'Accesorios',name:'Cinturón Simple',cost:2,capacity:0,detail:'Permite llevar bolsas, cuchillo o herramientas pequeñas.'},
+  {cat:'Accesorios',name:'Bolsa de Cinturón',cost:5,capacity:0,detail:'Guarda monedas, componentes pequeños, llaves o efectos personales.'},
+  {cat:'Accesorios',name:'Sombrero o Capucha',cost:5,capacity:0,detail:'Protege del sol o ayuda a cubrir parcialmente el rostro.'},
+  {cat:'Accesorios',name:'Guantes Simples',cost:3,capacity:0,detail:'Protegen las manos del frío, suciedad o trabajo ligero.'},
+  {cat:'Accesorios',name:'Guantes Finos',cost:15,capacity:0,detail:'Accesorio elegante para etiqueta.'},
+  {cat:'Accesorios',name:'Botas Resistentes',cost:20,capacity:0,detail:'Calzado adecuado para viaje, barro, piedra o marcha prolongada.'},
+  {cat:'Accesorios',name:'Botas Finas',cost:35,capacity:0,detail:'Calzado elegante, poco útil en terreno difícil.'},
+  {cat:'Accesorios',name:'Capa Simple',cost:10,capacity:0.5,detail:'Abrigo ligero o forma rápida de cubrir ropa y equipo.'},
+  {cat:'Accesorios',name:'Capa Buena',cost:40,capacity:0.5,detail:'Capa de buena tela para presentarse con dignidad.'},
+  {cat:'Accesorios',name:'Capa de Gala',cost:100,capacity:0.5,detail:'Prenda ornamental de prestigio.'},
+  {cat:'Accesorios',name:'Pañuelo o Faja',cost:5,capacity:0,detail:'Adorno, señal cultural o elemento de identidad.'},
+  {cat:'Accesorios',name:'Máscara Simple',cost:10,capacity:0,detail:'Cubre el rostro de forma básica.'},
+  {cat:'Accesorios',name:'Máscara Decorada',cost:60,capacity:0,detail:'Pieza artística o ceremonial.'},
+  {cat:'Accesorios',name:'Joyería Modesta',cost:25,capacity:0,detail:'Anillo, broche, pendiente, cuenta o pulsera sencilla.'},
+  {cat:'Accesorios',name:'Joyería Fina',cost:150,capacity:0,detail:'Plata, gemas menores o trabajo artesanal delicado.'},
+  {cat:'Accesorios',name:'Joyería Noble',cost:500,capacity:0,detail:'Oro, piedras preciosas o joyas de linaje. Coste base 500 L+'},
+  {cat:'Accesorios',name:'Sello Personal',cost:80,capacity:0,detail:'Sello grabado para lacre, cartas o documentos.'},
+  {cat:'Accesorios',name:'Perfume Común',cost:20,capacity:0,detail:'Fragancia sencilla.'},
+  {cat:'Accesorios',name:'Perfume Fino',cost:100,capacity:0,detail:'Fragancia cara y reconocible.'},
+  {cat:'Accesorios',name:'Cosméticos Simples',cost:15,capacity:0,detail:'Polvos, tintes, aceites o pigmentos comunes.'},
+  {cat:'Accesorios',name:'Cosméticos Finos',cost:80,capacity:0,detail:'Preparados de calidad para eventos, teatro o disfraz social.'},
+  {cat:'Accesorios',name:'Bastón Decorativo',cost:20,capacity:0.5,detail:'Accesorio de presencia, edad, autoridad o moda.'},
+  {cat:'Accesorios',name:'Abanico, Rosario o Amuleto Social',cost:15,capacity:0,detail:'Objeto pequeño de identidad, fe, moda o etiqueta.'}
+];
+const equipmentCats=['Todas',...Array.from(new Set(equipmentCatalog.map(i=>i.cat)))];
+
+const slots=[['Inicial',6],['Rango 1A',4],['Rango 1B',4],['Rango 2A',6],['Rango 2B',6],['Rango 3A',9],['Rango 3B',9]];
+const modules={
+  Pasiva:[
+    ['+1 a tirada específica',1,'Otorga +1 a una tirada concreta relacionada con la identidad de la Senda. Requiere una condición válida.'],
+    ['Ventaja situacional',2,'Otorga Ventaja en una categoría de tiradas bajo una condición clara y observable.'],
+    ['+1 a ataque condicionado',2,'Otorga +1 a tiradas de ataque bajo una condición específica. No puede usarse sin condición.'],
+    ['+1 al daño condicionado',2,'Otorga +1 al daño bajo una condición específica. No puede usarse sin condición.'],
+    ['Cambio de tipo de daño',1,'Permite cambiar el tipo de daño de un ataque apropiado entre Cortante, Penetrante o Contundente, si la ficción lo permite.'],
+    ['+1 Defensa',2,'Otorga +1 a la Defensa bajo una condición definida.'],
+    ['+1 Armadura',2,'Aumenta en 1 el bonificador de Armadura mientras se cumpla una condición de equipo o postura.'],
+    ['+2 a Salvación específica',2,'Otorga +2 a una clase concreta de Tiradas de Salvación.'],
+    ['+3 Resistencia máxima',1,'Otorga +3 a la Resistencia máxima.'],
+    ['+5 Resistencia máxima',2,'Otorga +5 a la Resistencia máxima.'],
+    ['+3 metros de movimiento',1,'Otorga +3 metros de movimiento bajo una condición clara.'],
+    ['+2 a Iniciativa',2,'Otorga +2 a la Iniciativa.'],
+    ['Ventaja en percepción',2,'Otorga Ventaja en tiradas de percepción dentro del ámbito de la Senda.'],
+    ['Ventaja en conocimiento',2,'Otorga Ventaja para recordar, identificar o analizar información relacionada con la Senda.'],
+    ['Ventaja en memoria',1,'Otorga Ventaja para recordar detalles observados o estudiados previamente.'],
+    ['Concepto +1',2,'Otorga +1 a un Concepto concreto cuando se usa en el contexto propio de la Senda.'],
+    ['Recuperación en descanso',2,'Mejora la recuperación propia o del grupo durante descansos en los que participas activamente.']
+  ],
+  Reactiva:[
+    ['Defensa reactiva',2,'Como Reacción, obtienes +2 Defensa contra un ataque que puedas percibir.'],
+    ['Interposición',3,'Como Reacción, proteges a un aliado cercano o te conviertes en el nuevo objetivo de un ataque.'],
+    ['Respuesta de apoyo',2,'Como Reacción, un aliado gana +1 o Ventaja situacional en una tirada inmediata.'],
+    ['Resistir estado',2,'Como Reacción, repites o mejoras una Salvación contra un estado alterado.'],
+    ['Contraempuje táctico',2,'Como Reacción tras ser atacado en cuerpo a cuerpo, puedes empujar, bloquear paso o reposicionar 1 objetivo bajo condición.'],
+    ['Cubrir retirada',2,'Como Reacción, permites que un aliado cercano se mueva una distancia corta sin provocar una consecuencia definida.'],
+    ['Negar Ventaja enemiga',3,'Como Reacción, un ataque o tirada enemiga contra ti o un aliado cercano no puede beneficiarse de Ventaja.'],
+    ['Proteger concentración',1,'Como Reacción, reduces o ignoras una interrupción menor que afectaría una acción sostenida.']
+  ],
+  'Acción — Ofensiva táctica':[
+    ['Ataque preparado',2,'Realizas o facilitas un ataque con un beneficio táctico, sin aumentar el daño directo de forma principal.'],
+    ['Aplicar estado táctico',3,'Impone o facilita un estado no dañino con Salvación o condición clara.'],
+    ['Reducir Defensa temporal',3,'El objetivo sufre una reducción breve de Defensa hasta el inicio o final de tu próximo turno.'],
+    ['Marcar objetivo',2,'Un objetivo queda marcado; aliados obtienen un beneficio limitado contra él bajo condición.'],
+    ['Distracción precisa',2,'El objetivo sufre Desventaja en su próxima tirada definida.'],
+    ['Amenaza controlada',2,'Obligas al objetivo a elegir entre atacarte, moverse o sufrir una consecuencia táctica no dañina.'],
+    ['Desarme o bloqueo',3,'Intentas impedir el uso de un arma, herramienta o ruta de acción mediante una tirada opuesta o Salvación.'],
+    ['Derribo condicionado',3,'Intentas dejar Derribado a un objetivo si se cumple una condición concreta y supera una Salvación fallida.']
+  ],
+  'Acción — Apoyo':[
+    ['Orden táctica',2,'Un aliado visible recibe un beneficio concreto y breve.'],
+    ['Ventaja a aliado',2,'Un aliado obtiene Ventaja en su próxima tirada relacionada con la orden, ayuda o preparación.'],
+    ['+1 a tirada de aliado',1,'Un aliado recibe +1 a una tirada concreta antes del final de su próximo turno.'],
+    ['+2 Defensa temporal',2,'Tú o un aliado obtenéis +2 Defensa hasta el inicio de tu próximo turno.'],
+    ['Curación menor',2,'Un aliado recupera una cantidad pequeña de Resistencia. Debe tener límite de uso o coste claro.'],
+    ['Curación moderada',3,'Un aliado recupera Resistencia de forma relevante. Requiere coste, acción y límite claro.'],
+    ['Eliminar estado con Ventaja',3,'Permite a un aliado repetir o realizar con Ventaja una Salvación para terminar un estado.'],
+    ['Estabilizar aliado caído',2,'Un aliado en 0 Resistencia queda estabilizado o evita empeorar hasta el final de la ronda.'],
+    ['Comunicación táctica',1,'Permite transmitir órdenes breves o señales claras a aliados dentro de un rango definido.']
+  ],
+  'Acción — Control y área':[
+    ['Reposicionamiento propio',1,'Te mueves o cambias de posición bajo una condición clara.'],
+    ['Reposicionamiento aliado',2,'Un aliado puede moverse una distancia corta bajo una condición clara.'],
+    ['Reposicionamiento forzado',3,'Mueves o desplazas a un objetivo con tirada opuesta o Salvación.'],
+    ['Distracción en área',3,'Varios objetivos dentro de un área pequeña sufren una penalización breve o Desventaja definida.'],
+    ['Ventaja grupal en área',3,'Aliados dentro de un área definida obtienen Ventaja en una tirada concreta.'],
+    ['Desventaja grupal en área',3,'Enemigos dentro de un área definida sufren Desventaja en una tirada concreta.'],
+    ['Barrera táctica',3,'Creas una protección, zona de control o bloqueo temporal que altera el movimiento o los ataques.'],
+    ['Zona segura breve',3,'Un área pequeña otorga protección limitada hasta el inicio de tu próximo turno.'],
+    ['Preparación',1,'Preparas una ventaja para una acción futura concreta.']
+  ],
+  Interacción:[
+    ['Herramienta narrativa',1,'Permite resolver o facilitar una tarea fuera de combate dentro del ámbito de la Senda.'],
+    ['Contacto o reputación',2,'Obtienes acceso social limitado en un contexto definido.'],
+    ['Lectura de situación',2,'Obtienes información útil si tienes tiempo y condiciones adecuadas.'],
+    ['Fabricación o reparación',2,'Permite crear, reparar o adaptar equipo bajo límites claros.'],
+    ['Curación fuera de combate',2,'Permite recuperar Resistencia o tratar heridas durante un descanso o pausa segura.'],
+    ['Preparar recuperación de Fatiga',2,'Durante un descanso, ayudas a reducir o resistir Fatiga bajo condiciones concretas.'],
+    ['Eliminar estado fuera de combate',2,'Permite tratar un estado alterado fuera de combate mediante tiempo, herramientas o tirada.'],
+    ['Restablecer aliado en 0 Resistencia',3,'Fuera de combate, permite levantar o estabilizar a un aliado en 0 Resistencia con coste y tiempo.'],
+    ['Preparación táctica pre-combate',2,'Antes de un combate previsto, preparas una ventaja inicial limitada para ti o el grupo.'],
+    ['Reputación activa en zona',2,'En una región o grupo donde la Senda sea reconocible, facilitas acceso, información o cooperación.'],
+    ['Marca de amenaza sobre objetivo',2,'Fuera de combate, estudias o señalas un objetivo para obtener una ventaja táctica posterior.'],
+    ['Investigación dirigida',2,'Obtienes pistas, debilidades, rutas o datos útiles al dedicar tiempo a investigar.'],
+    ['Gestión de recursos',1,'Reduce pérdidas, mejora organización o permite justificar equipo común relacionado con la Senda.']
+  ],
+  Cumbre:[
+    ['Efecto Cumbre defensivo',4,'Una vez por combate o descanso, protege de forma decisiva durante 3 rondas.'],
+    ['Efecto Cumbre social',4,'Cambia una negociación o situación social crítica bajo condiciones claras.'],
+    ['Efecto Cumbre táctico',4,'Reordena el combate sin infligir daño directo.'],
+    ['Efecto Cumbre de exploración',4,'Resuelve una amenaza de viaje, infiltración o entorno extremo.'],
+    ['Inmunidad temporal',5,'Otorga inmunidad temporal a un tipo de daño, estado o consecuencia durante una duración breve y concreta.'],
+    ['Área grande con efecto múltiple',5,'Afecta a varios objetivos en un área grande con beneficios o penalizaciones claras.'],
+    ['Múltiples estados sin Salvación',6,'Aplica varios estados o restricciones sin Salvación solo si la ficción, el rango y las condiciones lo justifican.'],
+    ['Revivir desde 0 Resistencia',6,'Un aliado que llegaría o está en 0 Resistencia vuelve a 1 o recupera una cantidad limitada. Debe tener uso restringido.'],
+    ['Transformación de 3 rondas',5,'Entras en un estado especial durante 3 rondas con beneficios y una contrapartida clara.'],
+    ['Ruptura temporal de regla',6,'Rompe una regla normal del sistema de forma breve, explícita y limitada. Requiere revisión del Diseñador.'],
+    ['Dominio de campo',5,'Durante varias rondas, cambias el funcionamiento de una zona: movimiento, defensa, cobertura, percepción o coordinación.']
+  ],
+  Desventaja:[
+    ['Inmovilidad temporal',-1,'Mientras dura el efecto, no puedes moverte voluntariamente.'],
+    ['Exposición',-1,'Hasta tu próximo turno, sufres -2 Defensa o una vulnerabilidad definida.'],
+    ['Coste alto',-1,'Aumenta el coste de Resistencia o limita a 1 uso por combate.'],
+    ['Condición estricta',-1,'Solo funciona en una condición muy concreta y verificable.'],
+    ['Requiere herramienta o equipo',-1,'Solo funciona si portas una herramienta, arma, foco, instrumento o equipo concreto.'],
+    ['Requiere aliado cercano',-1,'Solo funciona mientras un aliado esté dentro de una distancia definida.'],
+    ['Requiere posición fija',-1,'Solo funciona si no te has movido o si mantienes una posición concreta.'],
+    ['Fatiga o desgaste',-2,'Al usarlo, recibes Fatiga, pierdes recuperación o quedas limitado hasta descansar.'],
+    ['Uso por descanso',-1,'Limita la habilidad a 1 uso por descanso corto o largo, según potencia.'],
+    ['Riesgo de fallo agravado',-1,'Si fallas la tirada asociada, sufres una consecuencia adicional clara.']
+  ]
+}
+let state=JSON.parse(localStorage.getItem('papa_senda_builder_v4')||'null')||{step:0,identity:{name:'',subtitle:'',quote:'',fantasy:'',best:'',method:'',weakness:''},structure:{energies:[],profile:'robusto'},concepts:[],customConcept:'',affines:[],opposed:[],equipment:[],skills:slots.map(([slot,cap])=>({slot,cap,name:'',type:'Pasiva',when:'',does:'',cost:'',desc:'',ps:0,offensive:false,defensive:false,open:false,modules:[]}))};
+let currentSkill=null,currentTab='Pasiva';
+function save(){localStorage.setItem('papa_senda_builder_v4',JSON.stringify(state))}function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function js(v){return String(v??'').replace(/\\/g,'\\\\').replace(/'/g,"\\'")}function energyCost(){const n=state.structure.energies.length;return n<=1?0:n===2?4:10}function pcs(){return energyCost()+profiles[state.structure.profile].cost}function psAvail(){return 30-pcs()}function psUsed(){return state.skills.reduce((a,s)=>a+(Number(s.ps)||0),0)}function equipTotal(){return state.equipment.reduce((a,e)=>a+(Number(e.cost)||0),0)}
+function validate(){const bad=[],warn=[],ok=[];if(!state.identity.name)bad.push('Falta nombre de la Senda.');if(!state.identity.fantasy)bad.push('Falta fantasía central.');if(state.structure.energies.length<1)bad.push('Debes elegir al menos 1 Energía.');if(state.concepts.length!==3)bad.push('Debes elegir exactamente 3 Conceptos.');if(state.affines.length!==3)bad.push('Debes elegir exactamente 3 afines.');if(state.opposed.length!==2)bad.push('Debes elegir exactamente 2 contrarias.');if(state.skills.some(s=>!s.name))bad.push('Las 7 habilidades deben tener nombre.');if(state.skills.filter(s=>s.type==='Pasiva').length<2)bad.push('La Senda debe tener al menos 2 Pasivas.');if(state.skills.filter(s=>s.type==='Acción').length<2)bad.push('La Senda debe tener al menos 2 habilidades de Acción.');state.skills.forEach(s=>{if((Number(s.ps)||0)>s.cap)bad.push(`${s.slot} supera su techo de ${s.cap} PS.`);const t=`${s.when} ${s.does} ${s.desc}`.toLowerCase();if(t.includes('escena'))bad.push(`${s.slot} usa “escena”. Reemplaza por ronda, combate, descanso, jornada o condición.`);if(t.includes('mientras estoy en combate')||t.includes('cuando estoy en combate'))warn.push(`${s.slot} tiene una condición demasiado amplia.`);if(t.match(/inflige\s+\d|infliges\s+\d|causa\s+\d|daño directo/))warn.push(`${s.slot} parece infligir daño directo. Revisar para no reemplazar Técnicas.`)});if(state.structure.profile==='fragil'&&!state.skills.some(s=>s.defensive))bad.push('Perfil Frágil requiere al menos una habilidad marcada como evasión/mitigación.');if(state.structure.profile==='titan'&&state.skills.filter(s=>s.offensive).length>2)bad.push('Perfil Titán no puede tener más de 2 habilidades ofensivas principales.');if(psUsed()>psAvail())warn.push(`Las habilidades usan ${psUsed()} PS, pero solo hay ${psAvail()} PS disponibles.`);if(equipTotal()>100)warn.push(`El equipo supera 100 L. Actualmente: ${equipTotal()} L.`);if(!bad.length)ok.push('La Senda cumple los requisitos principales.');return{bad,warn,ok}}
+function progress(){let n=0;if(state.identity.name&&state.identity.fantasy)n++;if(state.structure.energies.length)n++;if(state.concepts.length===3)n++;if(state.affines.length===3&&state.opposed.length===2)n++;if(state.equipment.length)n++;if(state.skills.every(s=>s.name))n++;if(!validate().bad.length)n++;if(exportText().length>200)n++;return Math.round(n/8*100)}
+function render(){const [id,label,desc]=steps[state.step];document.getElementById('panelTitle').textContent=label;document.getElementById('panelDesc').textContent=desc;document.getElementById('steps').innerHTML=steps.map((s,i)=>`<button class="step ${i===state.step?'active':''}" onclick="go(${i})"><span class="num">${i+1}</span><span>${s[1]}</span></button>`).join('');document.getElementById('content').innerHTML=renderStep(id);hydrate(id);document.getElementById('prevBtn').disabled=state.step===0;document.getElementById('nextBtn').textContent=state.step===steps.length-1?'Listo':'Siguiente';renderSummary()}
+function go(i){state.step=Math.max(0,Math.min(steps.length-1,i));save();render()}function inputField(label,path,value,type='input',hint=''){const id=path.replaceAll('.','_');return`<div class="field"><label for="${id}">${label}</label>${type==='textarea'?`<textarea id="${id}">${esc(value)}</textarea>`:`<input id="${id}" value="${esc(value)}">`}${hint?`<div class="hint">${hint}</div>`:''}</div>`}
+function renderStep(id){if(id==='identity')return`<div class="grid two">${inputField('Nombre','identity.name',state.identity.name,'input','Ej: El Comandante')}${inputField('Subtítulo','identity.subtitle',state.identity.subtitle,'input','Ej: El que sostiene la línea')}${inputField('Frase','identity.quote',state.identity.quote,'input','Una frase corta de identidad')}${inputField('Fantasía central','identity.fantasy',state.identity.fantasy,'textarea','Una oración clara')}${inputField('¿Qué hace mejor que nadie?','identity.best',state.identity.best,'textarea')}${inputField('¿Cómo lo hace?','identity.method',state.identity.method,'textarea')}${inputField('¿Qué le cuesta?','identity.weakness',state.identity.weakness,'textarea')}</div>`;if(id==='structure')return`<h3 class="section-title">Energías</h3><div class="cards">${energies.map(e=>card(e,state.structure.energies.includes(e),`toggleEnergy('${js(e)}')`,'Máximo 3 energías.')).join('')}</div><h3 class="section-title">Perfil de Vitalidad</h3><div class="cards">${Object.entries(profiles).map(([k,p])=>`<div class="choice ${state.structure.profile===k?'selected':''}" onclick="setProfile('${k}')"><h3>${p.name}</h3><p>${p.cost} PCS · +${p.res} Resistencia por nivel desde nivel 1.</p><div style="margin-top:8px"><span class="badge ${k==='titan'?'warn':'blue'}">${p.rule}</span></div></div>`).join('')}</div><div class="alert ok" style="margin-top:14px">PS disponibles: <strong>${psAvail()}</strong></div>`;if(id==='concepts')return`<div class="field"><label>Concepto personalizado</label><input id="customConcept" value="${esc(state.customConcept)}" placeholder="Opcional"><div class="hint">Debe ser un área de dominio, no un bono.</div></div><div class="cards" style="margin-top:14px">${conceptList.map(([c,t])=>card(c,state.concepts.includes(c),`toggleLimit('concepts','${js(c)}',3)`,t)).join('')}${state.customConcept?card(state.customConcept,state.concepts.includes(state.customConcept),`toggleLimit('concepts','${js(state.customConcept)}',3)`,'Personalizado'):''}</div>`;if(id==='affinities')return`<h3 class="section-title">Afines — elige 3</h3><div class="cards">${affinityList.map(a=>card(a,state.affines.includes(a),`toggleLimit('affines','${js(a)}',3)`,'Reduce coste en PX.')).join('')}</div><h3 class="section-title">Contrarias — elige 2</h3><div class="cards">${affinityList.map(a=>card(a,state.opposed.includes(a),`toggleLimit('opposed','${js(a)}',2)`,'Aumenta coste en PX.')).join('')}</div>`;if(id==='equipment')return renderEquipmentStep();if(id==='skills')return`<div class="alert warn">Abre cada habilidad para editarla. Usa “Módulos” para elegir rasgos desde una subventana.</div><div class="skill-list" style="margin-top:14px">${state.skills.map((s,i)=>skillCard(s,i)).join('')}</div>`;if(id==='review'){const v=validate();return`<div class="alert-list">${v.ok.map(x=>`<div class="alert ok">${x}</div>`).join('')}${v.bad.map(x=>`<div class="alert bad">${x}</div>`).join('')}${v.warn.map(x=>`<div class="alert warn">${x}</div>`).join('')}</div>`}if(id==='export')return`<div class="top-actions" style="justify-content:flex-start;margin-bottom:12px"><button class="btn primary" onclick="copyExport()">Copiar texto</button><button class="btn" onclick="downloadTxt()">Descargar TXT</button><button class="btn" onclick="downloadJson()">Descargar JSON</button></div><textarea class="exportbox" id="exportBox">${esc(exportText())}</textarea>`}
+function card(title,selected,onclick,desc){return`<div class="choice ${selected?'selected':''}" onclick="${onclick}"><h3>${esc(title)}</h3><p>${esc(desc||'')}</p></div>`}function skillCard(s,i){return`<div class="skill-card"><div class="skill-summary"><div><strong>${s.slot} — ${esc(s.name||'Sin nombre')}</strong><div class="hint">${s.type} · ${Number(s.ps)||0}/${s.cap} PS</div></div><div class="top-actions"><button class="btn small" onclick="toggleSkill(${i})">${s.open?'Cerrar':'Abrir'}</button><button class="btn small primary" onclick="openModules(${i})">Módulos</button></div></div><div class="skill-body ${s.open?'':'collapsed'}"><div class="grid two"><div class="field"><label>Nombre</label><input id="sk_${i}_name" value="${esc(s.name)}"></div><div class="field"><label>Tipo</label><select id="sk_${i}_type">${['Pasiva','Reactiva','Acción','Interacción'].map(t=>`<option ${s.type===t?'selected':''}>${t}</option>`).join('')}</select></div><div class="field"><label>CUÁNDO</label><textarea id="sk_${i}_when">${esc(s.when)}</textarea></div><div class="field"><label>QUÉ HACE</label><textarea id="sk_${i}_does">${esc(s.does)}</textarea></div><div class="field"><label>CUÁNTO CUESTA</label><input id="sk_${i}_cost" value="${esc(s.cost)}"></div><div class="field"><label>PS usados</label><input id="sk_${i}_ps" type="number" value="${Number(s.ps)||0}"></div><div class="field" style="grid-column:1/-1"><label>DESCRIPCIÓN</label><textarea id="sk_${i}_desc">${esc(s.desc)}</textarea></div></div><div class="skill-actions"><label class="badge"><input type="checkbox" id="sk_${i}_offensive" ${s.offensive?'checked':''}> Ofensiva principal</label><label class="badge"><input type="checkbox" id="sk_${i}_defensive" ${s.defensive?'checked':''}> Evasión / mitigación</label></div></div></div>`}
+function hydrate(id){if(id==='identity'){['name','subtitle','quote','fantasy','best','method','weakness'].forEach(k=>bind(`identity_${k}`,v=>state.identity[k]=v))}if(id==='concepts')bind('customConcept',v=>state.customConcept=v);if(id==='equipment'){bind('equipSearch',v=>state.equipSearch=v);const fc=document.getElementById('equipFilterCat');if(fc)fc.onchange=e=>{state.equipFilterCat=e.target.value;save();render();};}if(id==='skills'){state.skills.forEach((s,i)=>{['name','when','does','cost','desc'].forEach(k=>bind(`sk_${i}_${k}`,v=>state.skills[i][k]=v));bind(`sk_${i}_ps`,v=>state.skills[i].ps=Number(v)||0);const type=document.getElementById(`sk_${i}_type`);if(type)type.onchange=e=>{state.skills[i].type=e.target.value;save();renderSummary()};const off=document.getElementById(`sk_${i}_offensive`);if(off)off.onchange=e=>{state.skills[i].offensive=e.target.checked;save();renderSummary()};const def=document.getElementById(`sk_${i}_defensive`);if(def)def.onchange=e=>{state.skills[i].defensive=e.target.checked;save();renderSummary()}})}}function bind(id,fn){const el=document.getElementById(id);if(!el)return;el.oninput=e=>{fn(e.target.value);save();renderSummary()}}
+function toggleSkill(i){state.skills[i].open=!state.skills[i].open;save();render()}function toggleEnergy(e){const a=state.structure.energies,i=a.indexOf(e);if(i>=0)a.splice(i,1);else if(a.length<3)a.push(e);save();render()}function setProfile(k){state.structure.profile=k;save();render()}function toggleLimit(key,val,max){const a=state[key],i=a.indexOf(val);if(i>=0)a.splice(i,1);else if(a.length<max)a.push(val);save();render()}
+function renderEquipmentStep(){
+  const cat=state.equipFilterCat||'Todas';
+  const q=(state.equipSearch||'').toLowerCase();
+  const list=equipmentCatalog.filter(it=>(cat==='Todas'||it.cat===cat) && (!q || (`${it.name} ${it.cat} ${it.detail}`).toLowerCase().includes(q)));
+  return `<div class="alert ok">El equipo inicial tiene presupuesto de <strong>100 L</strong>. Puedes añadir elementos del catálogo o crear objetos personalizados.</div>
+  <div class="grid two" style="margin-top:12px">
+    <div class="field"><label>Buscar en catálogo</label><input id="equipSearch" value="${esc(state.equipSearch||'')}" placeholder="espada, kit, ropa, cuerda..."></div>
+    <div class="field"><label>Categoría</label><select id="equipFilterCat">${equipmentCats.map(c=>`<option ${cat===c?'selected':''}>${esc(c)}</option>`).join('')}</select></div>
+  </div>
+  <h3 class="section-title">Catálogo</h3>
+  <div class="module-grid">${list.slice(0,80).map((it,idx)=>`<div class="module-card"><h4>${esc(it.name)}</h4><p><strong>${esc(it.cat)}</strong> · ${esc(it.detail)}</p><div class="module-footer"><span class="badge blue">${formatCost(it.cost)} L</span><span class="badge">Cap. ${it.capacity}</span><button class="btn small primary" onclick="addCatalogItem('${js(it.name)}')">Añadir</button></div></div>`).join('')||'<div class="alert warn">No hay resultados.</div>'}</div>
+  <h3 class="section-title">Objeto personalizado</h3>
+  <div class="grid three">
+    <div class="field"><label>Nombre</label><input id="equipName" placeholder="Objeto personalizado"></div>
+    <div class="field"><label>Coste</label><input id="equipCost" type="number" min="0" step="0.01" placeholder="0"></div>
+    <div class="field"><label>Capacidad</label><input id="equipCap" type="number" min="0" step="0.5" placeholder="0"></div>
+  </div>
+  <div class="field" style="margin-top:10px"><label>Notas</label><input id="equipDetail" placeholder="Daño, defensa, uso o descripción breve"></div>
+  <button class="btn primary" style="margin-top:10px" onclick="addCustomEquip()">Agregar personalizado</button>
+  <div class="alert ${equipTotal()>100?'bad':'ok'}" style="margin-top:12px">Lectos gastados: <strong>${formatCost(equipTotal())} / 100 L</strong> · Capacidad total: <strong>${formatCost(equipCapacity())}</strong></div>
+  <h3 class="section-title">Equipo elegido</h3>
+  <div class="skill-list">${state.equipment.length?state.equipment.map((e,i)=>`<div class="skill-card"><div class="skill-summary"><div><strong>${esc(e.name)}</strong><div class="hint">${esc(e.cat||'Personalizado')} · ${formatCost(e.cost||0)} L · Cap. ${formatCost(e.capacity||0)}${e.detail?' · '+esc(e.detail):''}</div></div><button class="btn small" onclick="removeEquip(${i})">Eliminar</button></div></div>`).join(''):'<div class="alert warn">Aún no hay equipo.</div>'}</div>`;
+}
+function formatCost(n){return Number(n||0).toLocaleString('es-CL',{maximumFractionDigits:2})}
+function equipCapacity(){return state.equipment.reduce((a,e)=>a+(Number(e.capacity)||0),0)}
+function addCatalogItem(name){
+  const it=equipmentCatalog.find(x=>x.name===name);
+  if(it) state.equipment.push({...it});
+  save();render();
+}
+function addCustomEquip(){
+  const name=document.getElementById('equipName').value.trim();
+  const cost=Number(document.getElementById('equipCost').value)||0;
+  const capacity=Number(document.getElementById('equipCap').value)||0;
+  const detail=document.getElementById('equipDetail').value.trim();
+  if(name) state.equipment.push({cat:'Personalizado',name,cost,capacity,detail});
+  save();render();
+}
+function addEquip(){addCustomEquip()}
+function removeEquip(i){state.equipment.splice(i,1);save();render()}
+
+function renderSummary(){document.getElementById('progress').style.width=progress()+'%';document.getElementById('sumName').textContent=state.identity.name||'—';const p=profiles[state.structure.profile];document.getElementById('sumProfile').textContent=`${p.name} (+${p.res}/nivel)`;document.getElementById('sumEnergies').textContent=state.structure.energies.join(', ')||'—';document.getElementById('sumPCS').textContent=`${pcs()} / 30`;document.getElementById('sumPS').textContent=`${psAvail()} disponibles · ${psUsed()} usados`;document.getElementById('sumConcepts').innerHTML=state.concepts.length?state.concepts.map(x=>`<span class="pill">${esc(x)}</span>`).join(''):'<span class="hint">—</span>';const v=validate(),items=[...v.bad.slice(0,3).map(x=>['bad',x]),...v.warn.slice(0,2).map(x=>['warn',x])];document.getElementById('sumAlerts').innerHTML=items.length?items.map(([c,x])=>`<div class="alert ${c}">${esc(x)}</div>`).join(''):'<div class="alert ok">Sin errores críticos.</div>'}
+function openModules(i){currentSkill=i;currentTab=state.skills[i].type in modules?state.skills[i].type:(state.skills[i].type==='Acción'?'Acción — Apoyo':'Pasiva');document.getElementById('moduleModal').classList.add('open');renderModules()}function closeModal(){document.getElementById('moduleModal').classList.remove('open');currentSkill=null}function renderModules(){const skill=state.skills[currentSkill];document.getElementById('modalTitle').textContent=`Módulos — ${skill.slot}`;document.getElementById('moduleTabs').innerHTML=Object.keys(modules).map(t=>`<button class="tab ${t===currentTab?'active':''}" onclick="setTab('${t}')">${t}</button>`).join('');document.getElementById('moduleGrid').innerHTML=modules[currentTab].map((m,idx)=>`<div class="module-card"><h4>${esc(m[0])}</h4><p>${esc(m[2])}</p><div class="module-footer"><span class="badge ${m[1]<0?'warn':'blue'}">${m[1]} PS</span><button class="btn small primary" onclick="addModule('${currentTab}',${idx})">Añadir</button></div></div>`).join('');renderSelectedModules()}function setTab(t){currentTab=t;renderModules()}function addModule(cat,idx){const m=modules[cat][idx];state.skills[currentSkill].modules.push({cat,name:m[0],ps:m[1],text:m[2],condition:'',scope:'Específica'});save();renderSelectedModules();renderSummary()}function removeModule(idx){state.skills[currentSkill].modules.splice(idx,1);save();renderSelectedModules();renderSummary()}function renderSelectedModules(){const skill=state.skills[currentSkill],total=skill.modules.reduce((a,m)=>a+Number(m.ps||0),0);document.getElementById('modalTotal').textContent=`Total módulos: ${total} PS`;document.getElementById('selectedModules').innerHTML=skill.modules.length?skill.modules.map((m,i)=>`<div class="selected-module"><div class="selected-module-head"><div><strong>${esc(m.name)}</strong> <span class="badge ${m.ps<0?'warn':'blue'}">${m.ps} PS</span></div><button class="btn small" onclick="removeModule(${i})">Eliminar</button></div><div class="hint">${esc(m.text)}</div><div class="condition-box"><input value="${esc(m.condition)}" placeholder="Condición concreta: cuándo empieza y termina" oninput="updateModuleCondition(${i},this.value)"><select onchange="updateModuleScope(${i},this.value)">${['Específica','General','Sin condición'].map(x=>`<option ${m.scope===x?'selected':''}>${x}</option>`).join('')}</select></div></div>`).join(''):'<div class="alert warn">No hay módulos seleccionados.</div>'}function updateModuleCondition(i,v){state.skills[currentSkill].modules[i].condition=v;save()}function updateModuleScope(i,v){state.skills[currentSkill].modules[i].scope=v;save()}function clearModules(){state.skills[currentSkill].modules=[];save();renderSelectedModules();renderSummary()}function applyModules(){const skill=state.skills[currentSkill],total=skill.modules.reduce((a,m)=>a+Number(m.ps||0),0);skill.ps=Math.max(0,total);skill.does=skill.modules.map(m=>`${m.name}: ${m.text}${m.condition?' Condición: '+m.condition+'.':''}`).join('\n');skill.offensive=skill.modules.some(m=>m.cat==='Acción — Ofensiva táctica'||m.name.includes('estado')||m.name.includes('Reducir Defensa')||m.name.includes('Derribo')||m.name.includes('Marcar objetivo')||m.name.includes('Efecto Cumbre táctico'));skill.defensive=skill.modules.some(m=>m.cat==='Reactiva'||m.name.includes('Defensa')||m.name.includes('Interposición')||m.name.includes('Resistir')||m.name.includes('Barrera')||m.name.includes('Curación')||m.name.includes('Estabilizar')||m.name.includes('Revivir')||m.name.includes('Inmunidad')||m.name.includes('Efecto Cumbre defensivo'));skill.open=true;save();closeModal();render()}
+function exportText(){const p=profiles[state.structure.profile];return`# ${state.identity.name||'SENDA SIN NOMBRE'}\n\n${state.identity.subtitle||''}\n${state.identity.quote?'"'+state.identity.quote+'"':''}\n\n## Identidad de la Senda\n\nFantasía: ${state.identity.fantasy||'—'}\nQué hace mejor que nadie: ${state.identity.best||'—'}\nCómo lo hace: ${state.identity.method||'—'}\nQué le cuesta: ${state.identity.weakness||'—'}\n\n## Estructura\n\nConceptos: ${state.concepts.join(', ')||'—'}\nEnergía: ${state.structure.energies.join(', ')||'—'}\nPerfil de Vitalidad: ${p.name} — +${p.res} Resistencia por nivel desde nivel 1\nPCS gastados: ${pcs()} / 30\nPS disponibles: ${psAvail()}\nEquipo: ${state.equipment.length?state.equipment.map(e=>`${e.name} (${formatCost(e.cost||0)} L${e.detail?' · '+e.detail:''})`).join(', '):'—'}\nAfines: ${state.affines.join(', ')||'—'}\nContrarias: ${state.opposed.join(', ')||'—'}\n\n## Habilidades\n\n${state.skills.map(s=>`### ${s.slot} — ${s.name||'Sin nombre'}\nTipo: ${s.type}\nPS: ${Number(s.ps)||0} / ${s.cap}\n\nCUÁNDO: ${s.when||'—'}\n\nQUÉ HACE:\n${s.does||'—'}\n\nCUÁNTO CUESTA: ${s.cost||'—'}\n\nDESCRIPCIÓN:\n${s.desc||'—'}\n`).join('\n')}\n## Revisión automática\n\n${[...validate().ok.map(x=>'✓ '+x),...validate().bad.map(x=>'✗ '+x),...validate().warn.map(x=>'! '+x)].join('\n')}`}function copyExport(){const box=document.getElementById('exportBox');navigator.clipboard.writeText(box?box.value:exportText())}function downloadTxt(){download('senda_papa.txt',exportText(),'text/plain')}function downloadJson(){download('senda_papa.json',JSON.stringify(state,null,2),'application/json')}function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click()}
+document.getElementById('prevBtn').onclick=()=>go(state.step-1);document.getElementById('nextBtn').onclick=()=>go(state.step+1);document.getElementById('saveBtn').onclick=()=>{save();alert('Guardado en este navegador.')};document.getElementById('resetBtn').onclick=()=>{if(confirm('¿Reiniciar todo?')){localStorage.removeItem('papa_senda_builder_v4');location.reload()}};document.getElementById('importBtn').onclick=()=>{const input=document.createElement('input');input.type='file';input.accept='.json,application/json';input.onchange=()=>{const file=input.files[0],reader=new FileReader();reader.onload=()=>{try{state=JSON.parse(reader.result);save();render()}catch(e){alert('JSON inválido.')}};reader.readAsText(file)};input.click()};document.getElementById('moduleModal').addEventListener('click',e=>{if(e.target.id==='moduleModal')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});render();
+</script>
+</body>
+</html>
